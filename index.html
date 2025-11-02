@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Buraq - All in One Super App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* Custom scrollbar for a more modern look */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #1a1a2e;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #ff1493;
+        border-radius: 10px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #e01280;
+      }
+      /* Style for active sidebar link */
+      .sidebar-link-active {
+        color: #ff1493;
+        font-weight: 700;
+        background-color: rgba(255, 20, 147, 0.1);
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "@heroicons/react/": "https://aistudiocdn.com/@heroicons/react@^2.2.0/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="bg-[#12121c] text-white font-sans overflow-x-hidden">
+    
+    <!-- Sidebar -->
+    <aside id="sidebar" class="fixed top-0 left-0 z-[60] w-3/4 sm:w-72 h-full bg-[#1a1a2e]/90 backdrop-blur-lg border-r border-white/10 transform -translate-x-full transition-transform duration-300 ease-in-out flex flex-col">
+      <div class="flex justify-between items-center p-6 border-b border-white/10">
+        <div class="flex items-center space-x-3">
+          <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="#ff1493" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M2 17L12 22L22 17" stroke="#ff1493" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M2 12L12 17L22 12" stroke="#ff1493" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+          <span class="text-xl font-bold text-white">Buraq</span>
+        </div>
+        <button id="close-sidebar-button" class="text-gray-400 hover:text-white transition-colors">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+      <nav class="flex-grow p-6">
+        <ul class="space-y-4">
+          <li><a href="#fitur" class="sidebar-link text-lg text-gray-300 hover:text-white transition-colors duration-300 font-medium block p-2 rounded-md hover:bg-white/5">Fitur</a></li>
+          <li><a href="#keunggulan" class="sidebar-link text-lg text-gray-300 hover:text-white transition-colors duration-300 font-medium block p-2 rounded-md hover:bg-white/5">Keunggulan</a></li>
+          <li><a href="#testimoni" class="sidebar-link text-lg text-gray-300 hover:text-white transition-colors duration-300 font-medium block p-2 rounded-md hover:bg-white/5">Testimoni</a></li>
+        </ul>
+      </nav>
+      <div class="p-6 border-t border-white/10">
+        <a href="https://d1.mediafire.com/file/7meavg90fnxu25t/BURAQ+0.0.4.apk" class="sidebar-link w-full text-center bg-gradient-to-r from-[#ff1493] to-[#ff69b4] text-white font-bold py-3 px-6 rounded-full shadow-lg hover:shadow-pink-500/50 transform hover:scale-105 transition-all duration-300 block">
+          Download App
+        </a>
+      </div>
+    </aside>
+
+    <!-- Overlay -->
+    <div id="overlay" class="fixed inset-0 bg-black/60 z-50 hidden"></div>
+
+    <header id="header" class="fixed top-0 left-0 right-0 z-40 transition-all duration-300 bg-transparent">
+      <div class="container mx-auto px-6 py-4">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center space-x-4">
+             <button id="open-sidebar-button" class="text-white focus:outline-none">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+              </svg>
+            </button>
+            <div class="flex items-center space-x-3">
+              <svg class="w-10 h-10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="#ff1493" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                  <path d="M2 17L12 22L22 17" stroke="#ff1493" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                  <path d="M2 12L12 17L22 12" stroke="#ff1493" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+              <span class="text-2xl font-bold text-white">Buraq</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-gradient-to-r from-[#ff1493] to-purple-600">
+        <div class="container mx-auto px-6 text-center">
+          <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white mb-6 leading-tight">
+            Satu Aplikasi untuk Semua Kebutuhan Digital Anda
+          </h1>
+          <p class="max-w-3xl mx-auto text-lg md:text-xl text-gray-300 mb-10">
+            Buraq adalah solusi lengkap untuk pulsa, PPOB, e-commerce, legalitas, hingga tour & travel. Nikmati kemudahan dalam satu genggaman.
+          </p>
+          <div class="flex justify-center items-center space-x-4 mb-16">
+            <a href="https://d1.mediafire.com/file/7meavg90fnxu25t/BURAQ+0.0.4.apk" class="flex items-center space-x-2 bg-white text-black px-6 py-3 rounded-lg font-semibold hover:bg-gray-200 transition-colors duration-300">
+                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3.626 1.143L18.96 11.23a1.43 1.43 0 010 2.54L3.626 23.857A1.43 1.43 0 012 22.57V2.43A1.43 1.43 0 013.626 1.143zM4.143 4.542v15.916L15.313 12 4.143 4.542z"></path>
+                </svg>
+              <span>Android</span>
+            </a>
+            <a href="#" class="ios-button flex items-center space-x-2 bg-white text-black px-6 py-3 rounded-lg font-semibold hover:bg-gray-200 transition-colors duration-300">
+                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12.247 9.873a2.384 2.384 0 00-1.077.587 2.403 2.403 0 00-.73 1.95v.003c.002.857.44 1.556.73 1.95.288.393.633.587 1.077.587s.79-.194 1.077-.587a2.402 2.402 0 00.73-1.95v-.003a2.403 2.403 0 00-.73-1.95c-.288-.393-.633-.587-1.077-.587zM16.49 4.3c-.63 0-1.312.33-1.78.89-.523.63-.845 1.41-.756 2.35l.08.77c-.015.003-.03.003-.046.003a3.52 3.52 0 00-2.227.766 3.52 3.52 0 00-1.282 2.553v.006a3.535 3.535 0 002.536 3.497 3.535 3.535 0 003.738-1.574 3.52 3.52 0 00.97-2.733v-.006a3.53 3.53 0 00-1.223-2.618C17.93 7.6 17.25 7.27 16.49 7.27z"></path>
+                    <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"></path>
+                </svg>
+              <span>iOS</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section id="fitur" class="py-20 lg:py-32">
+        <div class="container mx-auto px-6">
+          <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">
+              Semua yang Anda Butuhkan, <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#ff1493] to-[#ff69b4]">Tersedia di Sini</span>
+            </h2>
+            <p class="text-lg text-gray-400">
+              Jelajahi berbagai layanan unggulan kami yang dirancang untuk mempermudah hidup Anda.
+            </p>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            
+            <div class="bg-[#1a1a2e]/60 p-6 rounded-xl border border-white/10 backdrop-blur-sm transition-all duration-300 hover:border-[#ff1493] hover:shadow-lg hover:shadow-pink-500/20 transform hover:-translate-y-2">
+              <div class="mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-[#ff1493]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-white mb-2">Pulsa & Paket Data</h3>
+              <p class="text-gray-400">Isi ulang pulsa dan paket data semua operator dengan cepat dan murah.</p>
+            </div>
+            
+            <div class="bg-[#1a1a2e]/60 p-6 rounded-xl border border-white/10 backdrop-blur-sm transition-all duration-300 hover:border-[#ff1493] hover:shadow-lg hover:shadow-pink-500/20 transform hover:-translate-y-2">
+                <div class="mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-[#ff1493]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2">PPOB Lengkap</h3>
+                <p class="text-gray-400">Bayar tagihan listrik, air, BPJS, dan lainnya tanpa antri.</p>
+            </div>
+
+            <div class="bg-[#1a1a2e]/60 p-6 rounded-xl border border-white/10 backdrop-blur-sm transition-all duration-300 hover:border-[#ff1493] hover:shadow-lg hover:shadow-pink-500/20 transform hover:-translate-y-2">
+                <div class="mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-[#ff1493]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2">E-Commerce</h3>
+                <p class="text-gray-400">Belanja berbagai produk kebutuhan Anda langsung dari aplikasi.</p>
+            </div>
+
+            <div class="bg-[#1a1a2e]/60 p-6 rounded-xl border border-white/10 backdrop-blur-sm transition-all duration-300 hover:border-[#ff1493] hover:shadow-lg hover:shadow-pink-500/20 transform hover:-translate-y-2">
+                <div class="mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-[#ff1493]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2">Jasa Legalitas</h3>
+                <p class="text-gray-400">Urus dokumen legalitas usaha Anda dengan bantuan profesional.</p>
+            </div>
+            
+            <div class="bg-[#1a1a2e]/60 p-6 rounded-xl border border-white/10 backdrop-blur-sm transition-all duration-300 hover:border-[#ff1493] hover:shadow-lg hover:shadow-pink-500/20 transform hover:-translate-y-2">
+                <div class="mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-[#ff1493]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2">Kebutuhan Sosmed</h3>
+                <p class="text-gray-400">Tingkatkan eksistensi media sosial Anda dengan layanan kami.</p>
+            </div>
+
+            <div class="bg-[#1a1a2e]/60 p-6 rounded-xl border border-white/10 backdrop-blur-sm transition-all duration-300 hover:border-[#ff1493] hover:shadow-lg hover:shadow-pink-500/20 transform hover:-translate-y-2">
+                <div class="mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-[#ff1493]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-12v4m-2-2h4m5 4v4m-2-2h4M5 3a2 2 0 00-2 2v1.5a2.5 2.5 0 005 0V5a2 2 0 00-2-2zm14 0a2 2 0 00-2 2v1.5a2.5 2.5 0 005 0V5a2 2 0 00-2-2zM5 17a2 2 0 00-2 2v1.5a2.5 2.5 0 005 0V19a2 2 0 00-2-2zm14 0a2 2 0 00-2 2v1.5a2.5 2.5 0 005 0V19a2 2 0 00-2-2z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2">Aplikasi Premium</h3>
+                <p class="text-gray-400">Akses berbagai aplikasi premium dengan harga terjangkau.</p>
+            </div>
+
+            <div class="bg-[#1a1a2e]/60 p-6 rounded-xl border border-white/10 backdrop-blur-sm transition-all duration-300 hover:border-[#ff1493] hover:shadow-lg hover:shadow-pink-500/20 transform hover:-translate-y-2">
+                <div class="mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-[#ff1493]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M10 21h7a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v11m0 5l4.879-4.879m0 0a3 3 0 104.243-4.242 3 3 0 00-4.243 4.242z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2">Perizinan</h3>
+                <p class="text-gray-400">Bantuan pengurusan berbagai macam perizinan dengan mudah.</p>
+            </div>
+
+            <div class="bg-[#1a1a2e]/60 p-6 rounded-xl border border-white/10 backdrop-blur-sm transition-all duration-300 hover:border-[#ff1493] hover:shadow-lg hover:shadow-pink-500/20 transform hover:-translate-y-2">
+                <div class="mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-[#ff1493]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2">Tour & Travel</h3>
+                <p class="text-gray-400">Pesan tiket pesawat, kereta, dan hotel untuk liburan impian Anda.</p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <section id="keunggulan" class="py-20 lg:py-32 bg-[#1a1a2e]/50">
+        <div class="container mx-auto px-6">
+          <div class="max-w-3xl mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">
+              Kenapa Memilih <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#ff1493] to-[#ff69b4]">Buraq?</span>
+            </h2>
+            <p class="text-lg text-gray-400 mb-8">
+              Kami berkomitmen memberikan pengalaman terbaik bagi pengguna. Buraq dirancang untuk menjadi partner digital andalan Anda dengan berbagai keunggulan.
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 text-left">
+              <div class="flex items-center space-x-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#ff1493]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                  <span class="text-gray-300 font-medium">Transaksi Aman & Terpercaya</span>
+              </div>
+              <div class="flex items-center space-x-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#ff1493]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                  <span class="text-gray-300 font-medium">Proses Cepat & Instan</span>
+              </div>
+              <div class="flex items-center space-x-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#ff1493]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                  <span class="text-gray-300 font-medium">Layanan Pelanggan 24/7</span>
+              </div>
+              <div class="flex items-center space-x-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#ff1493]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                  <span class="text-gray-300 font-medium">Harga Paling Kompetitif</span>
+              </div>
+              <div class="flex items-center space-x-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#ff1493]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                  <span class="text-gray-300 font-medium">Antarmuka Mudah Digunakan</span>
+              </div>
+              <div class="flex items-center space-x-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#ff1493]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                  <span class="text-gray-300 font-medium">Satu Aplikasi untuk Semua</span>
+              </div>
+            </div>
+             <a href="https://d1.mediafire.com/file/7meavg90fnxu25t/BURAQ+0.0.4.apk" class="mt-10 inline-block bg-gradient-to-r from-[#ff1493] to-[#ff69b4] text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-pink-500/50 transform hover:scale-105 transition-all duration-300">
+                Mulai Sekarang
+             </a>
+          </div>
+        </div>
+      </section>
+
+      <section id="testimoni" class="py-20 lg:py-32">
+        <div class="container mx-auto px-6">
+          <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">
+              Apa Kata Mereka Tentang <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#ff1493] to-[#ff69b4]">Buraq</span>
+            </h2>
+            <p class="text-lg text-gray-400">
+              Kami bangga telah membantu ribuan pengguna. Lihat cerita sukses mereka.
+            </p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-[#1a1a2e]/60 p-8 rounded-xl border border-white/10 backdrop-blur-sm flex flex-col h-full">
+              <p class="text-gray-300 flex-grow">"Buraq benar-benar mengubah cara saya bertransaksi. Semua jadi lebih mudah dan cepat. Sangat direkomendasikan!"</p>
+              <div class="flex items-center mt-6">
+                <img src="https://picsum.photos/100/100?random=10" alt="Ahmad Subarjo" class="w-12 h-12 rounded-full mr-4" />
+                <div>
+                  <p class="font-bold text-white">Ahmad Subarjo</p>
+                  <p class="text-sm text-[#ff1493]">Pengusaha UMKM</p>
+                </div>
+              </div>
+            </div>
+            <div class="bg-[#1a1a2e]/60 p-8 rounded-xl border border-white/10 backdrop-blur-sm flex flex-col h-full">
+              <p class="text-gray-300 flex-grow">"Layanan tour & travel-nya juara! Saya bisa pesan tiket dan hotel dengan harga terbaik tanpa ribet. Aplikasi wajib punya."</p>
+              <div class="flex items-center mt-6">
+                <img src="https://picsum.photos/100/100?random=11" alt="Citra Lestari" class="w-12 h-12 rounded-full mr-4" />
+                <div>
+                  <p class="font-bold text-white">Citra Lestari</p>
+                  <p class="text-sm text-[#ff1493]">Travel Blogger</p>
+                </div>
+              </div>
+            </div>
+            <div class="bg-[#1a1a2e]/60 p-8 rounded-xl border border-white/10 backdrop-blur-sm flex flex-col h-full">
+              <p class="text-gray-300 flex-grow">"Sebagai freelancer, fitur jasa legalitas sangat membantu saya. Prosesnya transparan dan timnya sangat profesional."</p>
+              <div class="flex items-center mt-6">
+                <img src="https://picsum.photos/100/100?random=12" alt="Rian Pratama" class="w-12 h-12 rounded-full mr-4" />
+                <div>
+                  <p class="font-bold text-white">Rian Pratama</p>
+                  <p class="text-sm text-[#ff1493]">Digital Marketer</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="cta" class="py-20 lg:py-32">
+        <div class="container mx-auto px-6">
+          <div class="relative bg-gradient-to-r from-[#ff1493] to-purple-600 rounded-2xl p-10 md:p-16 text-center overflow-hidden">
+              <div class="absolute -top-10 -left-10 w-40 h-40 bg-white/10 rounded-full"></div>
+              <div class="absolute -bottom-16 -right-5 w-52 h-52 bg-white/10 rounded-full"></div>
+            <div class="relative z-10">
+              <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-4">
+                Siap Memulai Perjalanan Digital Anda?
+              </h2>
+              <p class="max-w-2xl mx-auto text-lg text-white/90 mb-10">
+                Download aplikasi Buraq sekarang dan rasakan kemudahan tak terbatas di ujung jari Anda. Bergabunglah dengan ribuan pengguna puas lainnya!
+              </p>
+              <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
+                  <a href="https://d1.mediafire.com/file/7meavg90fnxu25t/BURAQ+0.0.4.apk" class="flex items-center justify-center w-full sm:w-auto space-x-2 bg-black text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors duration-300">
+                    <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3.626 1.143L18.96 11.23a1.43 1.43 0 010 2.54L3.626 23.857A1.43 1.43 0 012 22.57V2.43A1.43 1.43 0 013.626 1.143zM4.143 4.542v15.916L15.313 12 4.143 4.542z"></path>
+                    </svg>
+                      <span>Android</span>
+                  </a>
+                  <a href="#" class="ios-button flex items-center justify-center w-full sm:w-auto space-x-2 bg-black text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors duration-300">
+                    <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12.247 9.873a2.384 2.384 0 00-1.077.587 2.403 2.403 0 00-.73 1.95v.003c.002.857.44 1.556.73 1.95.288.393.633.587 1.077.587s.79-.194 1.077-.587a2.402 2.402 0 00.73-1.95v-.003a2.403 2.403 0 00-.73-1.95c-.288-.393-.633-.587-1.077-.587zM16.49 4.3c-.63 0-1.312.33-1.78.89-.523.63-.845 1.41-.756 2.35l.08.77c-.015.003-.03.003-.046.003a3.52 3.52 0 00-2.227.766 3.52 3.52 0 00-1.282 2.553v.006a3.535 3.535 0 002.536 3.497 3.535 3.535 0 003.738-1.574 3.52 3.52 0 00.97-2.733v-.006a3.53 3.53 0 00-1.223-2.618C17.93 7.6 17.25 7.27 16.49 7.27z"></path>
+                        <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"></path>
+                    </svg>
+                    <span>iOS</span>
+                  </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bg-[#1a1a2e]/50 border-t border-white/10">
+      <div class="container mx-auto px-6 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div class="md:col-span-1">
+            <div class="flex items-center space-x-3 mb-4">
+              <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="#ff1493" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M2 17L12 22L22 17" stroke="#ff1493" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M2 12L12 17L22 12" stroke="#ff1493" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+              <span class="text-2xl font-bold text-white">Buraq</span>
+            </div>
+            <p class="text-gray-400">Satu Aplikasi, Sejuta Solusi.</p>
+          </div>
+          <div>
+            <h4 class="font-bold text-white mb-4">Layanan</h4>
+            <ul class="space-y-2">
+              <li><a href="#fitur" class="text-gray-400 hover:text-[#ff1493] transition-colors">Pulsa & PPOB</a></li>
+              <li><a href="#fitur" class="text-gray-400 hover:text-[#ff1493] transition-colors">E-Commerce</a></li>
+              <li><a href="#fitur" class="text-gray-400 hover:text-[#ff1493] transition-colors">Legalitas</a></li>
+              <li><a href="#fitur" class="text-gray-400 hover:text-[#ff1493] transition-colors">Tour & Travel</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-bold text-white mb-4">Perusahaan</h4>
+            <ul class="space-y-2">
+              <li><a href="#" class="text-gray-400 hover:text-[#ff1493] transition-colors">Tentang Kami</a></li>
+              <li><a href="#" class="text-gray-400 hover:text-[#ff1493] transition-colors">Karir</a></li>
+              <li><a href="#" class="text-gray-400 hover:text-[#ff1493] transition-colors">Kontak</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-bold text-white mb-4">Ikuti Kami</h4>
+            <div class="flex space-x-4">
+              <a href="#" class="text-gray-400 hover:text-[#ff1493] transition-colors">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd"></path></svg>
+              </a>
+              <a href="#" class="text-gray-400 hover:text-[#ff1493] transition-colors">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="mt-8 border-t border-white/10 pt-8 text-center text-gray-500">
+          <p>&copy; <span id="current-year"></span> Buraq. All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+    
+    <!-- iOS Not Available Notification -->
+    <div id="ios-notification" class="fixed bottom-5 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-6 py-3 rounded-lg shadow-lg opacity-0 transform translate-y-10 transition-all duration-300 z-[100]">
+      Versi iOS akan segera hadir. Terima kasih atas kesabaran Anda.
+    </div>
+
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > 10) {
+            header.classList.add('bg-[#12121c]/80', 'backdrop-blur-lg', 'shadow-lg');
+          } else {
+            header.classList.remove('bg-[#12121c]/80', 'backdrop-blur-lg', 'shadow-lg');
+          }
+        });
+
+        // Sidebar toggle
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+        const openSidebarButton = document.getElementById('open-sidebar-button');
+        const closeSidebarButton = document.getElementById('close-sidebar-button');
+        const sidebarLinks = document.querySelectorAll('.sidebar-link');
+        const body = document.body;
+
+        const openSidebar = () => {
+            sidebar.classList.remove('-translate-x-full');
+            overlay.classList.remove('hidden');
+            body.classList.add('overflow-hidden');
+        };
+
+        const closeSidebar = () => {
+            sidebar.classList.add('-translate-x-full');
+            overlay.classList.add('hidden');
+            body.classList.remove('overflow-hidden');
+        };
+
+        openSidebarButton.addEventListener('click', openSidebar);
+        closeSidebarButton.addEventListener('click', closeSidebar);
+        overlay.addEventListener('click', closeSidebar);
+        
+        sidebarLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                const href = link.getAttribute('href');
+
+                // Only handle smooth scrolling for internal anchor links
+                if (href && href.startsWith('#')) {
+                    e.preventDefault(); // Prevent the default anchor jump
+
+                    const targetId = href.substring(1);
+                    const targetElement = document.getElementById(targetId);
+
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                    
+                    closeSidebar(); // Close the sidebar after initiating the scroll
+                }
+            });
+        });
+        
+        // iOS button notification
+        const iosButtons = document.querySelectorAll('.ios-button');
+        const notification = document.getElementById('ios-notification');
+        let notificationTimeout;
+
+        iosButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+
+                clearTimeout(notificationTimeout);
+
+                notification.classList.remove('opacity-0', 'translate-y-10');
+                notification.classList.add('opacity-100', 'translate-y-0');
+
+                notificationTimeout = setTimeout(() => {
+                    notification.classList.remove('opacity-100', 'translate-y-0');
+                    notification.classList.add('opacity-0', 'translate-y-10');
+                }, 3000);
+            });
+        });
+
+
+        // Footer year
+        const yearSpan = document.getElementById('current-year');
+        if (yearSpan) {
+          yearSpan.textContent = new Date().getFullYear();
+        }
+        
+        // Active Sidebar Link on Scroll
+        const sections = document.querySelectorAll('section[id]');
+        const sidebarNavLinks = document.querySelectorAll('#sidebar nav a.sidebar-link');
+
+        const observerOptions = {
+            // This defines a "trigger line" at 40% from the top of the viewport.
+            rootMargin: '-40% 0px -60% 0px',
+            threshold: 0,
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const id = entry.target.id;
+                const link = document.querySelector(`#sidebar nav a.sidebar-link[href="#${id}"]`);
+
+                if (entry.isIntersecting) {
+                    // When a new section is "active", deactivate all other links
+                    sidebarNavLinks.forEach(l => l.classList.remove('sidebar-link-active'));
+                    // And activate the correct one
+                    if(link) link.classList.add('sidebar-link-active');
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            if (section.id) { // Ensure we only observe sections that have an ID
+                observer.observe(section);
+            }
+        });
+      });
+    </script>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
